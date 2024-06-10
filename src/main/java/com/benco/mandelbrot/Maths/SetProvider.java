@@ -15,15 +15,12 @@ public class SetProvider {
         List<Double> xCoords = getXCoords(noOfPixelsInXAxis, smallestReal, largestReal);
         List<Double> yCoords = getYCoords(noOfPixelsInYAxis, smallestIm, largestIm);
         int i = 0;
-int xCoord = 0;
+        int xCoord = 0;
         for (Double x : xCoords) {
             int yCoord = 0;
             //Iterate through each X value and calculate each Y Value, so
             for (Double y : yCoords) {
-                ComplexNumber c = ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build();
-                if (Function.isInMandelbrotSet(c)) {
-                    mandelbrotSet.add(c);
-                }
+                mandelbrotSet.add(Function.checkIsInMandelbrotSet(ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build()));
                 i++;
                 yCoord++;
             }

@@ -13,17 +13,23 @@ public class Function {
         return true;
     }
 
-    public static ComplexNumber checkIsInMandelbrotSet(ComplexNumber c) {
+    public static ComplexNumber checkIsInMandelbrotSet(final ComplexNumber c) {
         ComplexNumber z = Operand.complexFromReal(0);
-        for (int i = 0; i < MAX_ITERATIONS; i++) {
+        int i;
+        for (i = 0; i < MAX_ITERATIONS; i++) {
             z = iterate(c, z);
-            if (Operand.modulus(z) > 2) return false;
+            if (Operand.modulus(z) > 2) {
+                c.setInMandelbrotSet(false);
+                c.setNoOfIterations(i);
+            }
         }
-        return ComplexNumber;
+        c.setInMandelbrotSet(true);
+        c.setNoOfIterations(i);
+        return c;
     }
 
     private static ComplexNumber iterate(ComplexNumber c, ComplexNumber z) {
-        return(Operand.add(Operand.square(z), c));
+        return (Operand.add(Operand.square(z), c));
     }
 
     @Deprecated
