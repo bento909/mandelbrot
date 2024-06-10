@@ -21,6 +21,7 @@ public class Function {
             if (Operand.modulus(z) > 2) {
                 c.setInMandelbrotSet(false);
                 c.setNoOfIterations(i);
+                return c;
             }
         }
         c.setInMandelbrotSet(true);

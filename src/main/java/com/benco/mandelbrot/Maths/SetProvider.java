@@ -20,7 +20,10 @@ public class SetProvider {
             int yCoord = 0;
             //Iterate through each X value and calculate each Y Value, so
             for (Double y : yCoords) {
-                mandelbrotSet.add(Function.checkIsInMandelbrotSet(ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build()));
+                final ComplexNumber e = Function.checkIsInMandelbrotSet(ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build());
+                if(e.isInMandelbrotSet()){
+                    mandelbrotSet.add(e);
+                }
                 i++;
                 yCoord++;
             }
