@@ -2,7 +2,7 @@ package com.benco.mandelbrot.Maths;
 
 public class Function {
 
-    private static final int MAX_ITERATIONS = 75;
+    private static final int MAX_ITERATIONS = 100;
 
     public static boolean isInMandelbrotSet(ComplexNumber c) {
         ComplexNumber z = Operand.complexFromReal(0);
