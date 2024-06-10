@@ -15,15 +15,19 @@ public class SetProvider {
         List<Double> xCoords = getXCoords(noOfPixelsInXAxis, smallestReal, largestReal);
         List<Double> yCoords = getYCoords(noOfPixelsInYAxis, smallestIm, largestIm);
         int i = 0;
+int xCoord = 0;
         for (Double x : xCoords) {
+            int yCoord = 0;
+            //Iterate through each X value and calculate each Y Value, so
             for (Double y : yCoords) {
-                ComplexNumber c = ComplexNumber.builder().r(x).i(y).build();
+                ComplexNumber c = ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build();
                 if (Function.isInMandelbrotSet(c)) {
                     mandelbrotSet.add(c);
                 }
                 i++;
+                yCoord++;
             }
-
+            xCoord++;
         }
         log.info(String.format("We checked %s complex numbers to see if they are in the Mandelbrot set.", i));
         return mandelbrotSet;
@@ -43,8 +47,8 @@ public class SetProvider {
 
     public static List<Double> getXCoords(int widthPixels, double smallestReal, double largestReal) {
         List<Double> xCoords = new ArrayList<>();
-        double xIncrement = getXIncrement(widthPixels);
-        for (double i = smallestReal; i <= largestReal; i = i + xIncrement) {
+        double xIncrement = getXIncrement(widthPixels, smallestReal, largestReal);
+        for (double i = smallestReal; i < largestReal; i = i + xIncrement) {
             xCoords.add(i);
         }
         return xCoords;
@@ -52,7 +56,7 @@ public class SetProvider {
 
     public static List<Double> getYCoords(int heightPixels, double smallestIm, double largestIm) {
         List<Double> yCoords = new ArrayList<>();
-        double yIncrement = getYIncrement(heightPixels);
+        double yIncrement = getYIncrement(heightPixels, smallestIm, largestIm);
         for (double i = smallestIm; i <= largestIm; i = i + yIncrement) {
             yCoords.add(i);
         }
@@ -60,17 +64,16 @@ public class SetProvider {
     }
 
     public static double getXIncrement(int widthPixels, double smallestReal, double largestReal) {
-        int numberOfGaps = widthPixels - 1;
+        int numberOfGaps = widthPixels;
         return (largestReal - smallestReal) / numberOfGaps;
     }
 
     public static double getYIncrement(int heightPixels, double smallestIm, double largestIm) {
-        int numberOfGaps = heightPixels - 1;
+        int numberOfGaps = heightPixels;
         return (largestIm - smallestIm) / numberOfGaps;
     }
 
     public static Set<ComplexNumber> getNotMandelBrotSet(int noOfPixelsInXAxis, int noOfPixelsInYAxis) {
-
         return null;
     }
 }

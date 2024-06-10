@@ -15,6 +15,9 @@ public class ComplexNumber {
 
     private double r;
     private double i;
+    private int x;
+    private int y;
     private int noOfIterations;
+    private boolean isInMandelbrotSet;
 
 }
