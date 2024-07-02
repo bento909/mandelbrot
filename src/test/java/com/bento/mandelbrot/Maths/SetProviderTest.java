@@ -1,4 +1,4 @@
-package com.benco.mandelbrot.Maths;
+package com.bento.mandelbrot.Maths;
 
 import org.junit.jupiter.api.Test;
 
@@ -11,16 +11,16 @@ import static org.hamcrest.Matchers.is;
 
 class SetProviderTest {
 
-    private static final double SMALLEST_REAL = -2;
-    private static final double LARGEST_REAL = 0.5;
-    private static final double SMALLEST_IMAGINARY = -1.5;
-    private static final double LARGEST_IMAGINARY = 1.5;
+    private static final float SMALLEST_REAL = -2F;
+    private static final float LARGEST_REAL = 0.5F;
+    private static final float SMALLEST_IMAGINARY = -1.5F;
+    private static final float LARGEST_IMAGINARY = 1.5F;
 
     @Test
     public void getSetOfPixels() {
         int width = 13;
         int height = 8;
-        Set<ComplexNumber> mandelBrotSet = SetProvider.getMandelBrotSet(width, height, SMALLEST_REAL, LARGEST_REAL, SMALLEST_IMAGINARY, LARGEST_IMAGINARY);
+        Set<ComplexNumber> mandelBrotSet = new SetProvider().getMandelBrotSet(width, height, SMALLEST_REAL, LARGEST_REAL, SMALLEST_IMAGINARY, LARGEST_IMAGINARY);
         assertThat(mandelBrotSet.size(), is(14));
     }
 

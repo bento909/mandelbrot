@@ -1,4 +1,4 @@
-package com.benco.mandelbrot.domain;
+package com.bento.mandelbrot.domain;
 
 import lombok.Getter;
 import lombok.ToString;

@@ -1,7 +1,7 @@
-//package com.benco.mandelbrot.Graphics;
+//package com.bento.mandelbrot.Graphics;
 //
-//import com.benco.mandelbrot.Maths.ComplexNumber;
-//import com.benco.mandelbrot.Maths.SetProvider;
+//import com.bento.mandelbrot.Maths.ComplexNumber;
+//import com.bento.mandelbrot.Maths.SetProvider;
 //
 //import javax.swing.*;
 //import java.awt.*;

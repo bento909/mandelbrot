@@ -1,4 +1,4 @@
-package com.benco.mandelbrot.Maths;
+package com.bento.mandelbrot.Maths;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;

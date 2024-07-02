@@ -1,4 +1,4 @@
-package com.benco.mandelbrot.Maths;
+package com.bento.mandelbrot.Maths;
 
 public class Operand {
 

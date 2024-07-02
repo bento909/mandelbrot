@@ -1,6 +1,7 @@
-package com.benco.mandelbrot.Maths;
+package com.bento.mandelbrot.Maths;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,7 +11,8 @@ import java.util.Set;
 @Slf4j
 public class SetProvider {
 
-    public static Set<ComplexNumber> getMandelBrotSet(int noOfPixelsInXAxis, int noOfPixelsInYAxis, double smallestReal, double largestReal, double smallestIm, double largestIm) {
+    @Cacheable
+    public Set<ComplexNumber> getMandelBrotSet(int noOfPixelsInXAxis, int noOfPixelsInYAxis, float smallestReal, float largestReal, float smallestIm, float largestIm) {
         Set<ComplexNumber> mandelbrotSet = new HashSet<>();
         List<Double> xCoords = getXCoords(noOfPixelsInXAxis, smallestReal, largestReal);
         List<Double> yCoords = getYCoords(noOfPixelsInYAxis, smallestIm, largestIm);
@@ -45,7 +47,7 @@ public class SetProvider {
     public static List<Double> getXCoords(int widthPixels, double smallestReal, double largestReal) {
         List<Double> xCoords = new ArrayList<>();
         double xIncrement = getXIncrement(widthPixels, smallestReal, largestReal);
-        for (double i = smallestReal; i < largestReal; i = i + xIncrement) {
+        for (double i = smallestReal; i <= largestReal; i = i + xIncrement) {
             xCoords.add(i);
         }
         return xCoords;

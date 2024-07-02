@@ -1,4 +1,4 @@
-package com.benco.mandelbrot;
+package com.bento.mandelbrot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

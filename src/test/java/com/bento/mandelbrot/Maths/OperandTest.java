@@ -1,5 +1,6 @@
-package com.benco.mandelbrot.Maths;
+package com.bento.mandelbrot.Maths;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,8 +17,8 @@ public class OperandTest {
                 .build();
         final double realNumber = 5;
         final ComplexNumber expected = ComplexNumber.builder().r(15).i(10).build();
-        assertThat(Operand.times(z1, realNumber), is(expected));
-        assertThat(Operand.times(realNumber, z1), is(expected));
+        assertThat(Operand.times(z1, realNumber), Matchers.is(expected));
+        assertThat(Operand.times(realNumber, z1), Matchers.is(expected));
     }
 
     @Test
@@ -32,7 +33,7 @@ public class OperandTest {
                 .i(4)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(-5).i(14).build();
-        assertThat(Operand.times(z1,z2), is(expected));
+        assertThat(Operand.times(z1,z2), Matchers.is(expected));
     }
 
     @Test
@@ -47,7 +48,7 @@ public class OperandTest {
                 .i(7)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(-11).i(23).build();
-        assertThat(Operand.times(z1,z2), is(expected));
+        assertThat(Operand.times(z1,z2), Matchers.is(expected));
     }
 
     @Test
@@ -58,8 +59,8 @@ public class OperandTest {
                 .i(6)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(-20).i(-48).build();
-        assertThat(Operand.times(z1,z1), is(expected));
-        assertThat(Operand.square(z1), is(expected));
+        assertThat(Operand.times(z1,z1), Matchers.is(expected));
+        assertThat(Operand.square(z1), Matchers.is(expected));
     }
 
     @Test
@@ -74,7 +75,7 @@ public class OperandTest {
                 .i(-5)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(4).i(-3).build();
-        assertThat(Operand.add(z1, z2), is(expected));
+        assertThat(Operand.add(z1, z2), Matchers.is(expected));
     }
 
     @Test
@@ -85,7 +86,7 @@ public class OperandTest {
                 .i(2)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(5).i(2).build();
-        assertThat(Operand.add(z1, 2), is(expected));
+        assertThat(Operand.add(z1, 2), Matchers.is(expected));
     }
 
     @Test
@@ -100,7 +101,7 @@ public class OperandTest {
                 .i(-3)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(-3).i(7).build();
-        assertThat(Operand.subtract(z1, z2), is(expected));
+        assertThat(Operand.subtract(z1, z2), Matchers.is(expected));
     }
 
     @Test
@@ -111,7 +112,7 @@ public class OperandTest {
                 .i(4)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(2).i(-4).build();
-        assertThat(Operand.conjugate(z1), is(expected));
+        assertThat(Operand.conjugate(z1), Matchers.is(expected));
     }
 
     @Test
@@ -131,7 +132,7 @@ public class OperandTest {
                 .i(-3)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r((double) 2 /13).i((double) 3 /13).build();
-        assertThat(Operand.reciprocal(z1), is(expected));
+        assertThat(Operand.reciprocal(z1), Matchers.is(expected));
     }
 
     @Test
@@ -147,7 +148,7 @@ public class OperandTest {
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r((double) 1/2).i((double) 5/2).build();
         ComplexNumber actual = Operand.divide(z1, z2);
-        assertThat(actual, is(expected));
+        assertThat(actual, Matchers.is(expected));
     }
 
 
@@ -166,8 +167,8 @@ public class OperandTest {
         final ComplexNumber expectedNumerator = ComplexNumber.builder().r(-1).i(13).build();
         final double expectedDenominator = 17;
         final ComplexNumber expected = ComplexNumber.builder().r((double) -1 / expectedDenominator).i((double) 13 / expectedDenominator).build();
-        assertThat(Operand.divide(z1, z2), is(expected));
-        assertThat(Operand.divide(expectedNumerator, expectedDenominator), is(expected));
+        assertThat(Operand.divide(z1, z2), Matchers.is(expected));
+        assertThat(Operand.divide(expectedNumerator, expectedDenominator), Matchers.is(expected));
     }
 
     @Test
@@ -179,7 +180,7 @@ public class OperandTest {
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(3).i(-1).build();
         final double denominator = 2;
-        assertThat(Operand.divide(z1, denominator), is(expected));
+        assertThat(Operand.divide(z1, denominator), Matchers.is(expected));
     }
 
     @Test
@@ -191,6 +192,6 @@ public class OperandTest {
                 .i(1)
                 .build();
         final ComplexNumber expected = ComplexNumber.builder().r(1).i(-1).build();
-        assertThat(Operand.divide(numerator, z1), is(expected));
+        assertThat(Operand.divide(numerator, z1), Matchers.is(expected));
     }
 }
