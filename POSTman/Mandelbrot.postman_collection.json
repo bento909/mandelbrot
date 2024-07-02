@@ -1,0 +1,50 @@
+{
+	"info": {
+		"_postman_id": "ce654d95-cc93-44ea-8eb8-0fa96379a0b5",
+		"name": "Mandelbrot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31329051"
+	},
+	"item": [
+		{
+			"name": "GetMandelbrotSet",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept-encoding": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept-Encoding",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"noOfPixelsInXAxis\": 750,\r\n    \"noOfPixelsInYAxis\": 750\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/v1/getMandelbrotSet",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"v1",
+						"getMandelbrotSet"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
