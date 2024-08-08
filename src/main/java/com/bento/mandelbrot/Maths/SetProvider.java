@@ -12,9 +12,10 @@ import java.util.Set;
 public class SetProvider {
 
     private static final ComplexNumber ZERO = ComplexNumber.builder().build();
+    private static final int ITERATIONS = 100;
 
     @Cacheable
-    public Set<ComplexNumber> getMandelBrotSet(int noOfPixelsInXAxis, int noOfPixelsInYAxis, float smallestReal, float largestReal, float smallestIm, float largestIm) {
+    public Set<ComplexNumber> getMandelBrotSet(final int iterations, int noOfPixelsInXAxis, int noOfPixelsInYAxis, float smallestReal, float largestReal, float smallestIm, float largestIm) {
         Set<ComplexNumber> mandelbrotSet = new HashSet<>();
         List<Double> xCoords = getXCoords(noOfPixelsInXAxis, smallestReal, largestReal);
         List<Double> yCoords = getYCoords(noOfPixelsInYAxis, smallestIm, largestIm);
@@ -24,7 +25,7 @@ public class SetProvider {
             int yCoord = 0;
             //Iterate through each X value and calculate each Y Value, so
             for (Double y : yCoords) {
-                mandelbrotSet.add(Function.checkIsInMandelbrotSet(ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build()));
+                mandelbrotSet.add(Function.checkIsInMandelbrotSet(ComplexNumber.builder().r(x).i(y).x(xCoord).y(yCoord).build(), ITERATIONS));
                 i++;
                 yCoord++;
             }

@@ -24,8 +24,9 @@ public class ComplexNumbersController {
 
     @GetMapping("/getMandelbrotSet")
     public ResponseEntity<Set<ComplexNumber>> getMandelbrotSet(
-            @RequestParam int noOfPixelsInXAxis,
-            @RequestParam int noOfPixelsInYAxis,
+            @RequestParam int iterations,
+            @RequestParam int pixelsInXAxis,
+            @RequestParam int pixelsInYAxis,
             @RequestParam float smallestReal,
             @RequestParam float largestReal,
             @RequestParam float smallestIm,
@@ -33,8 +34,8 @@ public class ComplexNumbersController {
     ) {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("Get Mandelbrot Set");
-        log.info(String.format("Have received a request to get the Mandelbrot set! Number of Pixels in X axis: %s Number of Pixels in Y axis: %s\nSmallest Real: %s, Largest Real: %s, Smallest Imaginary: %s, Largest Imaginary: %s", noOfPixelsInXAxis, noOfPixelsInYAxis, largestReal, largestIm, smallestReal, smallestIm));
-        final Set<ComplexNumber> mandelBrotSet = new SetProvider().getMandelBrotSet(noOfPixelsInXAxis, noOfPixelsInYAxis, smallestReal, largestReal, smallestIm, largestIm);
+        log.info(String.format("Have received a request to get the Mandelbrot set! Number of Pixels in X axis: %s Number of Pixels in Y axis: %s\nSmallest Real: %s, Largest Real: %s, Smallest Imaginary: %s, Largest Imaginary: %s", pixelsInXAxis, pixelsInYAxis, largestReal, largestIm, smallestReal, smallestIm));
+        final Set<ComplexNumber> mandelBrotSet = new SetProvider().getMandelBrotSet(iterations, pixelsInXAxis, pixelsInYAxis, smallestReal, largestReal, smallestIm, largestIm);
         stopWatch.stop();
         log.info(String.format("Have calculated %s complex numbers z which are in the Mandelbrot set! %s", mandelBrotSet.size(), stopWatch.prettyPrint()));
         return new ResponseEntity<>(mandelBrotSet, HttpStatus.OK);

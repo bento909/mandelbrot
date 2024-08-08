@@ -30,7 +30,7 @@ class SetProviderTest {
     public void getSetOfPixels() {
         int width = 13;
         int height = 8;
-        Set<ComplexNumber> mandelBrotSet = new SetProvider().getMandelBrotSet(width, height, SMALLEST_REAL, LARGEST_REAL, SMALLEST_IMAGINARY, LARGEST_IMAGINARY);
+        Set<ComplexNumber> mandelBrotSet = new SetProvider().getMandelBrotSet(100, width, height, SMALLEST_REAL, LARGEST_REAL, SMALLEST_IMAGINARY, LARGEST_IMAGINARY);
         assertThat(mandelBrotSet.size(), is(126));
     }
 
