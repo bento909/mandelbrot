@@ -11,6 +11,8 @@ import java.util.Set;
 @Slf4j
 public class SetProvider {
 
+    private static final ComplexNumber ZERO = ComplexNumber.builder().build();
+
     @Cacheable
     public Set<ComplexNumber> getMandelBrotSet(int noOfPixelsInXAxis, int noOfPixelsInYAxis, float smallestReal, float largestReal, float smallestIm, float largestIm) {
         Set<ComplexNumber> mandelbrotSet = new HashSet<>();
@@ -32,16 +34,33 @@ public class SetProvider {
         return mandelbrotSet;
     }
 
-    // ignore this
-    public static Set<ComplexNumber> mobiusTransform(Set<ComplexNumber> complexNumbers, ComplexNumber a, ComplexNumber b, ComplexNumber c, ComplexNumber d) {
-        Set<ComplexNumber> transformedSet = new HashSet<>();
-        for (ComplexNumber z : complexNumbers) {
-            ComplexNumber top = Operand.add(Operand.times(z, a), b);
-            ComplexNumber bottom = Operand.add(Operand.times(z, c), d);
-            transformedSet.add(Operand.divide(top, bottom));
-        }
-        return transformedSet;
-    }
+//    TODO This does work but we don't need it yet
+//    public static Set<ComplexNumber> mobiusTransform(Set<ComplexNumber> complexNumbers, ComplexNumber a, ComplexNumber b, ComplexNumber c, ComplexNumber d) {
+//        try {
+//            Set<ComplexNumber> transformedSet = new HashSet<>();
+//            for (ComplexNumber z : complexNumbers) {
+//                ComplexNumber top = Operand.add(Operand.times(z, a), b);
+//                ComplexNumber bottom = Operand.add(Operand.times(z, c), d);
+//                if (!bottom.equals(ZERO)) {
+//                    transformedSet.add(Operand.divide(top, bottom));
+//                } else {
+//                    log.info(String.format("we cannot divide by zero! z = %s", z));
+//                }
+//            }
+//            return transformedSet;
+//        } catch (final DivideByZeroException divideByZeroException) {
+//            log.error("This should neve be reached because we check in advance if we will end up dividing by zero");
+//            return complexNumbers;
+//        }
+//    }
+
+//    private static ComplexNumber adMinusBc(ComplexNumber a, ComplexNumber b, ComplexNumber c, ComplexNumber d) {
+//        final ComplexNumber ad = Operand.times(a, d);
+//        final ComplexNumber bc = Operand.times(b, c);
+//        final ComplexNumber minusOne = ComplexNumber.builder().r(-1).build();
+//        final ComplexNumber minusBc = Operand.times(bc, minusOne);
+//        return Operand.add(ad, minusBc);
+//    }
 
 
     public static List<Double> getXCoords(int widthPixels, double smallestReal, double largestReal) {
@@ -62,11 +81,13 @@ public class SetProvider {
         return yCoords;
     }
 
+    //TODO do away with one of these bad melonfarmers
     public static double getXIncrement(int widthPixels, double smallestReal, double largestReal) {
         int numberOfGaps = widthPixels;
         return (largestReal - smallestReal) / numberOfGaps;
     }
 
+    //TODO do away with one of these bad melonfarmers
     public static double getYIncrement(int heightPixels, double smallestIm, double largestIm) {
         int numberOfGaps = heightPixels;
         return (largestIm - smallestIm) / numberOfGaps;

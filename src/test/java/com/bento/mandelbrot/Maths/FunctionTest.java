@@ -32,13 +32,13 @@ class FunctionTest {
     }
 
     @Test
-    public void numberInMandelbrotSetTwo() {
+    public void numberInMandelbrotSetTwo() throws DivideByZeroException {
         //constant c = (1+i)/4
         Assertions.assertTrue(Function.isInMandelbrotSet(Operand.divide(ComplexNumber.builder().r(1).i(1).build(), 4)));
     }
 
     @Test
-    public void numberInMandelbrotSetThree() {
+    public void numberInMandelbrotSetThree() throws DivideByZeroException {
         //constant c = -1.5
         Assertions.assertTrue(Function.isInMandelbrotSet(Operand.divide(ComplexNumber.builder().r(-5).i(0).build(), 3)));
     }
@@ -69,13 +69,13 @@ class FunctionTest {
     }
 
     @Test
-    public void countInterationsBeforeEscape_numberInMandelbrotSetTwo() {
+    public void countInterationsBeforeEscape_numberInMandelbrotSetTwo() throws DivideByZeroException {
         //constant c = (1+i)/4
         Assertions.assertEquals(0, Function.mandelbrotIter(Operand.divide(ComplexNumber.builder().r(1).i(1).build(), 4), 10));
     }
 
     @Test
-    public void countInterationsBeforeEscape_numberInMandelbrotSetThree() {
+    public void countInterationsBeforeEscape_numberInMandelbrotSetThree() throws DivideByZeroException {
         //constant c = -1.5
         Assertions.assertEquals(0, Function.mandelbrotIter(Operand.divide(ComplexNumber.builder().r(-5).i(0).build(), 3), 10));
     }

@@ -18,12 +18,16 @@ public class Operand {
         double c = (z1.getR() * z2.getI());
         double d = (z1.getI() * z2.getR());
         return ComplexNumber.builder()
-                .r(a+b)
-                .i(c+d)
+                .r(a + b)
+                .i(c + d)
                 .build();
     }
 
-    public static ComplexNumber square(final ComplexNumber z1){
+    public static ComplexNumber r(final double realOnly) {
+        return ComplexNumber.builder().r(realOnly).build();
+    }
+
+    public static ComplexNumber square(final ComplexNumber z1) {
         return times(z1, z1);
     }
 
@@ -50,21 +54,24 @@ public class Operand {
         return add(z1, z2);
     }
 
-    public static ComplexNumber divide(ComplexNumber numerator, ComplexNumber denominator) {
+    public static ComplexNumber divide(ComplexNumber numerator, ComplexNumber denominator) throws DivideByZeroException {
         // w/z = (w *zbar / |z|sqrd) numerator = w, denominator = z
         ComplexNumber top = times(numerator, conjugate(denominator));
         int bottom = (int) (modulus(denominator) * modulus(denominator));
-        return ComplexNumber.builder()
-                .r(top.getR()/bottom)
-                .i(top.getI()/bottom)
-                .build();
+        if (bottom != 0) {
+            return ComplexNumber.builder()
+                    .r(top.getR() / bottom)
+                    .i(top.getI() / bottom)
+                    .build();
+        }
+        throw new DivideByZeroException(numerator, denominator);
     }
 
-    public static ComplexNumber divide(ComplexNumber numerator, double denominator) {
+    public static ComplexNumber divide(ComplexNumber numerator, double denominator) throws DivideByZeroException {
         return divide(numerator, complexFromReal(denominator));
     }
 
-    public static ComplexNumber divide(double numerator, ComplexNumber denominator) {
+    public static ComplexNumber divide(double numerator, ComplexNumber denominator) throws DivideByZeroException {
         ComplexNumber complexNumerator = complexFromReal(numerator);
         return divide(complexNumerator, denominator);
     }
@@ -89,7 +96,7 @@ public class Operand {
         final double a = z1.getR();
         final double b = z1.getI();
         final double denominator = (a * a) + (b * b);
-        return ComplexNumber.builder().r(a/denominator).i(-b/denominator).build();
+        return ComplexNumber.builder().r(a / denominator).i(-b / denominator).build();
 
     }
 }

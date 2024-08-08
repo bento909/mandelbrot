@@ -136,7 +136,7 @@ public class OperandTest {
     }
 
     @Test
-    public void testDivision() {
+    public void testDivision() throws DivideByZeroException {
         //(3+2i)/(1-i) = (0.5+2.5i)
         final ComplexNumber z1 = ComplexNumber.builder()
                 .r(3)
@@ -151,9 +151,11 @@ public class OperandTest {
         assertThat(actual, Matchers.is(expected));
     }
 
+    //TODO test divide by zero throws an exception
+
 
     @Test
-    public void testDivisionTwo() {
+    public void testDivisionTwo() throws DivideByZeroException {
         //(2+4i) / (5-3i) = (-1+13)/17
         //(-1+13)/17 = (-1/17+13/17)
         final ComplexNumber z1 = ComplexNumber.builder()
@@ -172,7 +174,7 @@ public class OperandTest {
     }
 
     @Test
-    public void testDivisionThree() {
+    public void testDivisionThree() throws DivideByZeroException {
         //(6-2i)/(2) = (3-i)
         final ComplexNumber z1 = ComplexNumber.builder()
                 .r(6)
@@ -184,7 +186,7 @@ public class OperandTest {
     }
 
     @Test
-    public void testDivisionFour() {
+    public void testDivisionFour() throws DivideByZeroException {
         //(2)/(1+i) = (1-i)
         final double numerator = 2;
         final ComplexNumber z1 = ComplexNumber.builder()
